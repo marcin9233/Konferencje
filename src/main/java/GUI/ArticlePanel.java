@@ -25,7 +25,6 @@ public class ArticlePanel
         ArticleSearchField = articleSearchField;
         ArticleTableModel = articleTableModel;
      //   MainWindowFrame = frame;
-        //   MainInstance = mainInstance;
     }
 
     KeyListener ArticleSearchFieldListener = new KeyListener()
