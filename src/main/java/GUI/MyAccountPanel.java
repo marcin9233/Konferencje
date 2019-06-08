@@ -491,7 +491,7 @@ class MyAccountPanel
                    JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, confirmOptions, confirmOptions[1])==JOptionPane.YES_OPTION)
                 {
                     logger.trace("User " + CurrentUser.getLogin() + " removed account");
-                    QueryHandler.execute("DELETE FROM sysuser where userID='"+ CurrentUser.getID() +"';");
+                    QueryHandler.execute("DELETE FROM sysuser WHERE userID='"+ CurrentUser.getID() +"';");
 
                     CurrentUser.setValues(null);
                     new LoginForm(frame);

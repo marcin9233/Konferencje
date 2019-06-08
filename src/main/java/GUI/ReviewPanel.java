@@ -46,7 +46,7 @@ public class ReviewPanel
             ReviewTable.setRowSorter(sorter);
         }
     };
-/*
+
     MouseAdapter ReviewTableListener = new MouseAdapter()
     {
         @Override
@@ -56,7 +56,7 @@ public class ReviewPanel
             ArrayList<String> ReviewValues = Selector.select("Select * FROM Review LIMIT " + row +  ", 1;").get(0);
 
         }
-    };*/
+    };
 
     void UpdateReviewTable()
     {
