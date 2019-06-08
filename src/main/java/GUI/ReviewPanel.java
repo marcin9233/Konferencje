@@ -25,7 +25,6 @@ public class ReviewPanel
     {
         ReviewTable = reviewTable;
         ReviewSearchField = reviewSearchField;
-        //ReviewSearchField.addKeyListener(ReviewSearchFieldListener);
         ReviewTableModel = reviewTableModel;
         //MainWindowFrame = frame;
         //MainInstance = mainInstance;

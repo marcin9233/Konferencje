@@ -23,7 +23,6 @@ public class ArticlePanel
     {
         ArticleTable = articleTable;
         ArticleSearchField = articleSearchField;
-        //ArticleSearchField.addKeyListener(ArticleSearchFieldListener);
         ArticleTableModel = articleTableModel;
      //   MainWindowFrame = frame;
      //   MainInstance = mainInstance;
