@@ -44,6 +44,8 @@ public class MainWindow
     private static final Object[] confirmOptions = {"     Tak     ","     Nie     "};
     private final Logger logger = LogManager.getLogger(MainWindow.class);
 
+    Color ActiveCardColor = new Color(64, 128, 255);
+
     void updateAvailableCards(int currentcard)
     {
         myAccountButton.setEnabled(0!=currentcard);
@@ -56,19 +58,20 @@ public class MainWindow
 
     void changeActiveCard(int card)     //  0-5 (so far)
     {
+        /*
         myAccountButton.setEnabled(0!=card);
         myArticlesButton.setEnabled(1!=card && CurrentUser.isAuthor());
         myReviewsButton.setEnabled(2!=card && CurrentUser.isReviewer());
         redactedArticlesButton.setEnabled(3!=card && CurrentUser.isRedactor());
         manageUsersButton.setEnabled(4!=card && CurrentUser.isAdmin());
-        manageArticlesButton.setEnabled(5!=card && CurrentUser.isAdmin());
+        manageArticlesButton.setEnabled(5!=card && CurrentUser.isAdmin());*/
 
-        myAccountButton.setBackground( 0==card ? Color.WHITE : null );
-        myArticlesButton.setBackground( 1==card ? Color.WHITE : null );
-        myReviewsButton.setBackground( 2==card ? Color.WHITE: null );
-        redactedArticlesButton.setBackground( 3==card ? Color.WHITE: null );
-        manageUsersButton.setBackground( 4==card ? Color.WHITE: null );
-        manageArticlesButton.setBackground( 5==card ? Color.WHITE: null );
+        myAccountButton.setBackground( 0==card ? ActiveCardColor : null );
+        myArticlesButton.setBackground( 1==card ? ActiveCardColor : null );
+        myReviewsButton.setBackground( 2==card ? ActiveCardColor: null );
+        redactedArticlesButton.setBackground( 3==card ? ActiveCardColor: null );
+        manageUsersButton.setBackground( 4==card ? ActiveCardColor: null );
+        manageArticlesButton.setBackground( 5==card ? ActiveCardColor: null );
 
         if(card==0) frame.setTitle("Moje konto");
         if(card==1) frame.setTitle("Moje artykuły");
@@ -213,16 +216,19 @@ public class MainWindow
         removeAccountButton.addActionListener(myAccountPanel.removeAccountButtonListener);
 
         // MOJE ARTYKUŁY - DO POPRAWY
-        /*  ArticlePanel articlePanel = new ArticlePanel(ArticleTable, ArticleSearchField, ArticleTableModel, frame, mainInstance);
-        ArticlePanel.UpdateUsersTable();
-        ArticleSearchField.addKeyListener(ArticlePanel.ArticleSearchFieldListener); */
+        ArticlePanel articlePanel = new ArticlePanel(ArticleTable, ArticleSearchField, ArticleTableModel, frame, mainInstance);
+        articlePanel.UpdateArticleTable();
+        ArticleTable.addMouseListener(articlePanel.ArticleTableListener);
+        ArticleSearchField.addKeyListener(articlePanel.ArticleSearchFieldListener);
+
             //TODO
 
         // MOJE RECENZJE - DO POPRAWY!!!
-        /*ReviewPanel reviewPanel = new ReviewPanel(ReviewTable, ReviewSearchField, ReviewTableModel, frame, mainInstance);
+        ReviewPanel reviewPanel = new ReviewPanel(ReviewTable, ReviewSearchField, ReviewTableModel, frame, mainInstance);
         reviewPanel.UpdateReviewTable();
-        ReviewSearchField.addKeyListener(reviewPanel.ReviewSearchFieldListener);*/
-        //ReviewTable.addMouseListener(reviewPanel.ReviewTableListener);
+        ReviewSearchField.addKeyListener(reviewPanel.ReviewSearchFieldListener);
+        ReviewTable.addMouseListener(reviewPanel.ReviewTableListener);
+
             // TODO
 
         // REDAGOWANIE ARTYKUŁY
@@ -257,10 +263,10 @@ public class MainWindow
         ReviewTable.setAutoCreateRowSorter(true);
 
         ArticleTable = new JTable();
-        String[] ArticleTableColumns = {"Autor artykułu", "Tytuł artykułu"};
+        String[] ArticleTableColumns = {"Autor", "Tytuł", "Redaktor", "Specjalizacja"};
         ArticleTable.setModel(new DefaultTableModel(ArticleTableColumns,0));
         ArticleTableModel = (DefaultTableModel) ArticleTable.getModel();
         ArticleTable.setDefaultEditor(Object.class, null);
         ArticleTable.setAutoCreateRowSorter(true);
-}
+    }
 }

@@ -7,6 +7,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -23,7 +25,6 @@ public class ArticlePanel
     {
         ArticleTable = articleTable;
         ArticleSearchField = articleSearchField;
-        ArticleSearchField.addKeyListener(ArticleSearchFieldListener);
         ArticleTableModel = articleTableModel;
         MainWindowFrame = frame;
         MainInstance = mainInstance;
@@ -45,7 +46,7 @@ public class ArticlePanel
             ArticleTable.setRowSorter(sorter);
         }
     };
-/*
+
     MouseAdapter ArticleTableListener = new MouseAdapter()
     {
         @Override
@@ -53,15 +54,26 @@ public class ArticlePanel
         {
             int row = ArticleTable.convertRowIndexToModel(ArticleTable.rowAtPoint(evt.getPoint()));
             ArrayList<String> ArticleValues = Selector.select("Select * FROM Article LIMIT " + row +  ", 1;").get(0);
+            String message = "";
 
+            for(String Value : ArticleValues)
+                message+= Value + " ";
+
+            JOptionPane.showMessageDialog(null, message, "Błąd", JOptionPane.PLAIN_MESSAGE);
         }
-    };*/
+    };
 
-    void UpdateReviewTable()
+    void UpdateArticleTable()
     {
         ArticleTableModel.setNumRows(0);
 
-        ArrayList<ArrayList<String>> ArticleList = Selector.select("SELECT AuthorID, title, articleID FROM Article");
+        ArrayList<ArrayList<String>> ArticleList = Selector.select("SELECT S.login AS author, A.title, SR.login as redactor, SP.name as specialization\n" +
+                "FROM Article A\n" +
+                "LEFT JOIN Sysuser S ON A.AuthorID = S.userID\n" +
+                "LEFT JOIN sysuser SR ON A.RedactorID = SR.userID\n" +
+                "LEFT JOIN specialization SP ON  A.specializationID = SP.specializationID\n" +
+                "WHERE S.userID = '" + CurrentUser.getID() + "';");
+
         for(ArrayList<String> iter : ArticleList)
             ArticleTableModel.addRow(new Vector<String>(iter));
     }

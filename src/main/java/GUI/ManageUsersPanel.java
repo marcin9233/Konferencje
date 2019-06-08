@@ -64,7 +64,7 @@ public class ManageUsersPanel
     {
         UsersTableModel.setNumRows(0);
 
-        ArrayList<ArrayList<String>> UsersList = Selector.select("SELECT login, isAuthor, isReviewer, isRedactor, isAdmin, userID FROM SysUser");
+        ArrayList<ArrayList<String>> UsersList = Selector.select("SELECT login, isAuthor, isReviewer, isRedactor, isAdmin FROM SysUser");
         for(ArrayList<String> iter : UsersList)
             UsersTableModel.addRow(new Vector<String>(iter));
     }
