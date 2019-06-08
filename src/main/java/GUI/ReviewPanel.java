@@ -25,7 +25,6 @@ public class ReviewPanel
     {
         ReviewTable = reviewTable;
         ReviewSearchField = reviewSearchField;
-        ReviewSearchField.addKeyListener(ReviewSearchFieldListener);
         ReviewTableModel = reviewTableModel;
         MainWindowFrame = frame;
         MainInstance = mainInstance;
@@ -63,7 +62,7 @@ public class ReviewPanel
     {
         ReviewTableModel.setNumRows(0);
 
-        ArrayList<ArrayList<String>> ReviewList = Selector.select("SELECT ReviewerID, title, reviewID FROM Review");
+        ArrayList<ArrayList<String>> ReviewList = Selector.select("SELECT SU.login AS Reviewer, R.title, SA.login AS Author, A.title, R.Rating FROM review R, sysuser SU, sysuser SA, article A WHERE R.ReviewerID = SU.userID AND A.AuthorID = SA.userID AND R.articleID = A.articleID AND SU.userID='"+CurrentUser.getID()+"';");
         for(ArrayList<String> iter : ReviewList)
             ReviewTableModel.addRow(new Vector<String>(iter));
     }
