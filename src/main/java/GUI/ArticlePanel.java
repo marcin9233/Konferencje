@@ -23,7 +23,7 @@ public class ArticlePanel
     {
         ArticleTable = articleTable;
         ArticleSearchField = articleSearchField;
-        ArticleSearchField.addKeyListener(ArticleSearchFieldListener);
+        //ArticleSearchField.addKeyListener(ArticleSearchFieldListener);
         ArticleTableModel = articleTableModel;
      //   MainWindowFrame = frame;
      //   MainInstance = mainInstance;
@@ -57,7 +57,7 @@ public class ArticlePanel
         }
     };*/
 
-    void UpdateReviewTable()
+    void UpdateArticleTable()
     {
         ArticleTableModel.setNumRows(0);
 

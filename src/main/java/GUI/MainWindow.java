@@ -40,6 +40,7 @@ public class MainWindow
     private DefaultTableModel ReviewTableModel;
 
     private JTable ArticleTable;
+    private JScrollPane scrollPane1;
     private JTextField ArticleSearchField;
     private DefaultTableModel ArticleTableModel;
 
@@ -215,15 +216,15 @@ public class MainWindow
         removeAccountButton.addActionListener(myAccountPanel.removeAccountButtonListener);
 
         // MOJE ARTYKUŁY - DO POPRAWY
-     /*     ArticlePanel articlePanel = new ArticlePanel(ArticleTable, ArticleSearchField, ArticleTableModel);//, frame, mainInstance);
-        ArticlePanel.UpdateArticleTable();
-        ArticleSearchField.addKeyListener(ArticlePanel.ArticleSearchFieldListener);*/
+        ArticlePanel articlePanel = new ArticlePanel(ArticleTable, ArticleSearchField, ArticleTableModel);//, frame, mainInstance);
+        articlePanel.UpdateArticleTable();
+        //ArticleSearchField.addKeyListener(articlePanel.ArticleSearchFieldListener);
             //TODO
 
         // MOJE RECENZJE - DO POPRAWY!!!
         ReviewPanel reviewPanel = new ReviewPanel(ReviewTable, ReviewSearchField, ReviewTableModel);//, frame, mainInstance);
         reviewPanel.UpdateReviewTable();
-        ReviewSearchField.addKeyListener(reviewPanel.ReviewSearchFieldListener);
+        //ReviewSearchField.addKeyListener(reviewPanel.ReviewSearchFieldListener);
         //ReviewTable.addMouseListener(reviewPanel.ReviewTableListener);
             // TODO
 
@@ -252,7 +253,7 @@ public class MainWindow
         UsersTable.setAutoCreateRowSorter(true);
 
         ReviewTable = new JTable();
-        String[] ReviewTableColumns = {"Autor recenzji", "Tytuł recenzji"};
+        String[] ReviewTableColumns = {"Autor recenzji", "Tytuł recenzji", "Autor artykułu", "Tytuł artykułu", "Ocena"};
         ReviewTable.setModel(new DefaultTableModel(ReviewTableColumns,0));
         ReviewTableModel = (DefaultTableModel) ReviewTable.getModel();
         ReviewTable.setDefaultEditor(Object.class, null);

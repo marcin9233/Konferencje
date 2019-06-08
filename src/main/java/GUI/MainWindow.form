@@ -502,7 +502,7 @@
                   </component>
                 </children>
               </grid>
-              <scrollpane id="e3b75">
+              <scrollpane id="e3b75" binding="scrollPane1">
                 <constraints>
                   <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false">
                     <preferred-size width="453" height="498"/>
@@ -511,7 +511,7 @@
                 <properties/>
                 <border type="none"/>
                 <children>
-                  <component id="e7f44" class="javax.swing.JTable" binding="ArticleTable">
+                  <component id="e7f44" class="javax.swing.JTable" binding="ArticleTable" custom-create="true">
                     <constraints/>
                     <properties/>
                   </component>
