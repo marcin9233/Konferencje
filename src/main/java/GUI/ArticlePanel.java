@@ -19,14 +19,14 @@ public class ArticlePanel
     private MainWindow MainInstance;
     private ArticlePanel ArticlePanelInstance = this;
 
-    ArticlePanel(JTable articleTable, JTextField articleSearchField, DefaultTableModel articleTableModel, JFrame frame, MainWindow mainInstance)
+    ArticlePanel(JTable articleTable, JTextField articleSearchField, DefaultTableModel articleTableModel)//, JFrame frame, MainWindow mainInstance)
     {
         ArticleTable = articleTable;
         ArticleSearchField = articleSearchField;
         ArticleSearchField.addKeyListener(ArticleSearchFieldListener);
         ArticleTableModel = articleTableModel;
-        MainWindowFrame = frame;
-        MainInstance = mainInstance;
+     //   MainWindowFrame = frame;
+     //   MainInstance = mainInstance;
     }
 
     KeyListener ArticleSearchFieldListener = new KeyListener()

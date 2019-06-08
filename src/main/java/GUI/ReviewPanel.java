@@ -17,18 +17,18 @@ public class ReviewPanel
     private JTable ReviewTable;
     private JTextField ReviewSearchField;
     private DefaultTableModel ReviewTableModel;
-    private JFrame MainWindowFrame;
-    private MainWindow MainInstance;
+   //private JFrame MainWindowFrame;
+   // private MainWindow MainInstance;
     private ReviewPanel ReviewPanelInstance = this;
 
-    ReviewPanel(JTable reviewTable, JTextField reviewSearchField, DefaultTableModel reviewTableModel, JFrame frame, MainWindow mainInstance)
+    ReviewPanel(JTable reviewTable, JTextField reviewSearchField, DefaultTableModel reviewTableModel)//, JFrame frame, MainWindow mainInstance)
     {
         ReviewTable = reviewTable;
         ReviewSearchField = reviewSearchField;
         ReviewSearchField.addKeyListener(ReviewSearchFieldListener);
         ReviewTableModel = reviewTableModel;
-        MainWindowFrame = frame;
-        MainInstance = mainInstance;
+        //MainWindowFrame = frame;
+        //MainInstance = mainInstance;
     }
 
     KeyListener ReviewSearchFieldListener = new KeyListener()

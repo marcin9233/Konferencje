@@ -30,7 +30,9 @@ public class MainWindow
     //Manage Users
     private JTable UsersTable;
     private JTextField UsersSearchField;
+
     private JPanel WelcomeScreen;
+
     private DefaultTableModel UsersTableModel;
 
     private JTable ReviewTable;
@@ -213,15 +215,15 @@ public class MainWindow
         removeAccountButton.addActionListener(myAccountPanel.removeAccountButtonListener);
 
         // MOJE ARTYKUŁY - DO POPRAWY
-        /*  ArticlePanel articlePanel = new ArticlePanel(ArticleTable, ArticleSearchField, ArticleTableModel, frame, mainInstance);
-        ArticlePanel.UpdateUsersTable();
-        ArticleSearchField.addKeyListener(ArticlePanel.ArticleSearchFieldListener); */
+     /*     ArticlePanel articlePanel = new ArticlePanel(ArticleTable, ArticleSearchField, ArticleTableModel);//, frame, mainInstance);
+        ArticlePanel.UpdateArticleTable();
+        ArticleSearchField.addKeyListener(ArticlePanel.ArticleSearchFieldListener);*/
             //TODO
 
         // MOJE RECENZJE - DO POPRAWY!!!
-        /*ReviewPanel reviewPanel = new ReviewPanel(ReviewTable, ReviewSearchField, ReviewTableModel, frame, mainInstance);
+        ReviewPanel reviewPanel = new ReviewPanel(ReviewTable, ReviewSearchField, ReviewTableModel);//, frame, mainInstance);
         reviewPanel.UpdateReviewTable();
-        ReviewSearchField.addKeyListener(reviewPanel.ReviewSearchFieldListener);*/
+        ReviewSearchField.addKeyListener(reviewPanel.ReviewSearchFieldListener);
         //ReviewTable.addMouseListener(reviewPanel.ReviewTableListener);
             // TODO
 
