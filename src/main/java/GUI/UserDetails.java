@@ -97,6 +97,17 @@ public class UserDetails
         frame.setLocationRelativeTo(parentFrame);
         parentFrame.setEnabled(false);
 
+        frame.addWindowListener(new WindowAdapter()     // closing window - activating main window again
+        {
+            @Override
+            public void windowClosing(WindowEvent we)
+            {
+                frame.dispose();
+                parentFrame.setEnabled(true);
+                parentFrame.setVisible(true);
+            }
+        });
+
         userLogin.setText(ManagedUserValues.get(1));
         userName.setText(ManagedUserValues.get(3));
         userSurname.setText(ManagedUserValues.get(4));
@@ -136,17 +147,6 @@ public class UserDetails
             adminCheckBox.setToolTipText("Konto \"admin\" nie może zostać usunięte!");
             warningsLabel.setText("Konto \"admin\" nie może zostać usunięte!");
         }
-
-        frame.addWindowListener(new WindowAdapter()     // closing window - activating main window again
-        {
-            @Override
-            public void windowClosing(WindowEvent we)
-            {
-                frame.dispose();
-                parentFrame.setEnabled(true);
-                parentFrame.setVisible(true);
-            }
-        });
 
         // change user functions
 

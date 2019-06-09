@@ -17,6 +17,10 @@ public class MainWindow
     private JSeparator Separator;
     private final CardLayout cards = (CardLayout) (Cards.getLayout());
 
+    private static final Object[] confirmOptions = {"     Tak     ","     Nie     "};
+    private final Logger logger = LogManager.getLogger(MainWindow.class);
+    private Color ActiveCardColor = new Color(64, 128, 255);
+
     //My Account
     private JLabel currLogin, currName, currSurname, currEmail, currPesel, currStreetAddress, currPostCode, currTown;
     private JTextField newLogin, newName, newSurname, newEmail, newPesel, newStreetAddress, newPostCode, newTown;
@@ -33,18 +37,17 @@ public class MainWindow
     private JPanel WelcomeScreen;
     private DefaultTableModel UsersTableModel;
 
-    private JTable ReviewTable;
-    private JTextField ReviewSearchField;
-    private DefaultTableModel ReviewTableModel;
-
+    //My Articles
     private JTable ArticleTable;
     private JTextField ArticleSearchField;
     private DefaultTableModel ArticleTableModel;
+    private JButton AddArticleButton;
 
-    private static final Object[] confirmOptions = {"     Tak     ","     Nie     "};
-    private final Logger logger = LogManager.getLogger(MainWindow.class);
-
-    Color ActiveCardColor = new Color(64, 128, 255);
+    //My Reviews
+    private JTable ReviewTable;
+    private JTextField ReviewSearchField;
+    private DefaultTableModel ReviewTableModel;
+    private JButton AddReviewButton;
 
     void updateAvailableCards(int currentcard)
     {
@@ -215,11 +218,13 @@ public class MainWindow
         changeDataButton.addActionListener(myAccountPanel.changeDataButtonListener);
         removeAccountButton.addActionListener(myAccountPanel.removeAccountButtonListener);
 
-        // MOJE ARTYKUŁY - DO POPRAWY
+        // MOJE ARTYKUŁY
+
         ArticlePanel articlePanel = new ArticlePanel(ArticleTable, ArticleSearchField, ArticleTableModel, frame, mainInstance);
         articlePanel.UpdateArticleTable();
         ArticleTable.addMouseListener(articlePanel.ArticleTableListener);
         ArticleSearchField.addKeyListener(articlePanel.ArticleSearchFieldListener);
+        AddArticleButton.addActionListener(articlePanel.AddArticleButtonListener);
 
             //TODO
 
@@ -228,10 +233,7 @@ public class MainWindow
         reviewPanel.UpdateReviewTable();
         ReviewSearchField.addKeyListener(reviewPanel.ReviewSearchFieldListener);
         ReviewTable.addMouseListener(reviewPanel.ReviewTableListener);
-
-            // TODO
-
-        // REDAGOWANIE ARTYKUŁY
+        AddReviewButton.addActionListener(reviewPanel.AddReviewButtonListener);
 
             // TODO
 
@@ -256,7 +258,7 @@ public class MainWindow
         UsersTable.setAutoCreateRowSorter(true);
 
         ReviewTable = new JTable();
-        String[] ReviewTableColumns = {"Autor recenzji", "Tytuł recenzji"};
+        String[] ReviewTableColumns = {"Recenzent", "Tytuł recenzji", "Autor", "Tytuł artykułu", "Ocena"};
         ReviewTable.setModel(new DefaultTableModel(ReviewTableColumns,0));
         ReviewTableModel = (DefaultTableModel) ReviewTable.getModel();
         ReviewTable.setDefaultEditor(Object.class, null);
