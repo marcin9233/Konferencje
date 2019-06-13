@@ -5,10 +5,7 @@ import SQLhandling.Selector;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -44,6 +41,16 @@ public class ReviewPanel
             TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>((DefaultTableModel) ReviewTable.getModel());
             sorter.setRowFilter(RowFilter.regexFilter(ReviewSearchField.getText()));
             ReviewTable.setRowSorter(sorter);
+        }
+    };
+
+    ActionListener AddReviewButtonListener =  new ActionListener()
+    {
+        @Override
+        public void actionPerformed(ActionEvent e)
+        {
+            // TODO
+            // dodawanie recenzji - dodanie do bazy i na serwer
         }
     };
 

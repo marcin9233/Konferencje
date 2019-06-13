@@ -5,10 +5,7 @@ import SQLhandling.Selector;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -47,19 +44,37 @@ public class ArticlePanel
         }
     };
 
+    ActionListener AddArticleButtonListener =  new ActionListener()
+    {
+        @Override
+        public void actionPerformed(ActionEvent e)
+        {
+            // TODO
+            // dodawanie artykułu - dodanie do bazy i na serwer
+        }
+    };
+
     MouseAdapter ArticleTableListener = new MouseAdapter()
     {
         @Override
         public void mouseClicked(MouseEvent evt)
         {
             int row = ArticleTable.convertRowIndexToModel(ArticleTable.rowAtPoint(evt.getPoint()));
-            ArrayList<String> ArticleValues = Selector.select("Select * FROM Article LIMIT " + row +  ", 1;").get(0);
-            String message = "";
+            ArrayList<String> ArticleValues = Selector.select(
+                    "SELECT A.title AS tytul, UA.login AS autor, S.name AS specjalizacja, UR.login AS redaktor, A.state as stan, A.articleID\n" +
+                    "FROM Article A\n" +
+                    "JOIN sysuser UA ON A.AuthorID = UA.userID\n" +
+                    "LEFT JOIN specialization S ON S.specializationID = A.specializationID \n" +
+                    "LEFT JOIN sysuser UR ON A.RedactorID = UR.userID\n" +
+                    "LIMIT " + row + ", 1").get(0);
 
+            new ArticleDetails(MainWindowFrame, ArticleValues, MainInstance, ArticlePanelInstance);
+
+            /*
+            String message = "";
             for(String Value : ArticleValues)
                 message+= Value + " ";
-
-            JOptionPane.showMessageDialog(null, message, "Błąd", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(null, message, "Błąd", JOptionPane.PLAIN_MESSAGE);*/
         }
     };
 
